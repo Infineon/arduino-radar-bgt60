@@ -5,12 +5,10 @@ Arduino library of Infineon's **Infineon's 60 GHz Radar shield**, base on the **
 ### Supported Sensor Boards
 <table>
     <tr>
-        <td align="center"><img src="https://github.com/Infineon/radar-bgt60/wiki/img/" width=200></td>
-        <td align="center"><img  src="https://github.com/Infineon/radar-bgt60/wiki/img/" width=200></td>
+        <td align="center"><img src="https://github.com/Infineon/radar-bgt60/wiki/img/bgt60-without-background.png" width=200></td>
     </tr>
     <tr>
-        <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/Hardware-Platforms#sectionn">shield</a></td>
-        <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/Hardware-Platforms#section-stand-alone">BGT60LTR11AiP IC Stand-alone</a></td>
+        <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/Hardware-Platforms#radar-bgt60-pinout">BGT60LTR11AIP Shield for Arduino</a></td>
     </tr>
 </table>
 
@@ -22,14 +20,14 @@ Check in this [link](https://github.com/Infineon/radar-bgt60/wiki/Hardware-Platf
 
 ### Getting Started
 
-Find a getting started tutorial based on the >>>radar-bgt60<<< and the >>>eval board<<<< [here](https://github.com/Infineon/radar-bgt60/wiki/Ino-Getting-Started).
+Find a getting started tutorial based on the Infineon's 60 GHz Radar shield and the Arduino MKR1000 eval kit [here](https://github.com/Infineon/radar-bgt60/wiki/Ino-Getting-Started).
 
 ### More information
 
 The complete relevant Arduino documentation (and more) can be found in the base XFP library [Wiki](https://github.com/infineon/radar-bgt60/wiki/Home):
 
 * <a href="https://github.com/Infineon/radar-bgt60/wiki/Ino-Library-Installation"> Arduino Lib Installation</a><br> 
-* <a href="https://github.com/Infineon/radar-bgt60/wiki/Ino-Examples">Arduino Examples</a><br>
+* <a href="https://github.com/Infineon/radar-bgt60/wiki/Examples">Arduino Examples</a><br>
 * <a href="https://github.com/Infineon/radar-bgt60/wiki/Arduino-API">Arduino API</a><br>
 * <a href="https://github.com/Infineon/radar-bgt60/wiki/PlatformIO">PlatformIO</a><br>
 
