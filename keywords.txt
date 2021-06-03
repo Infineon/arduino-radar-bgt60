@@ -1,0 +1,44 @@
+#######################################
+# Syntax Coloring Map For BGT60
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Motion_t            KEYWORD1
+Direction_t         KEYWORD1
+Error_t             KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	            KEYWORD2
+end	                KEYWORD2
+getMotion           KEYWORD2
+getDirection        KEYWORD2
+enableInterrupt     KEYWORD2
+disableInterrupt    KEYWORD2
+
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+Bgt60Ino            KEYWORD2
+Bgt60               KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+TD                  LITERAL1
+PD                  LITERAL1
+NO_MOTION           LITERAL1
+MOTION              LITERAL1
+NO_DIR              LITERAL1
+APPROACHING         LITERAL1
+DEPARTING           LITERAL1
+
+
