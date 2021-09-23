@@ -1,7 +1,7 @@
 /**
  * @file        bgt60-pal-gpio.hpp
  * @author		Infineon Technologies AG
- * @brief       RADAR BGT60 GPIO Platform Abstraction Layer
+ * @brief       Radar BGT60 GPIO Platform Abstraction Layer
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT

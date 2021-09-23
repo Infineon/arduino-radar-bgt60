@@ -1,6 +1,6 @@
 /**
  * @file        bgt60-conf-opts.hpp
- * @brief       Radar BGT 60 Library Configuration Options
+ * @brief       Radar BGT60 Library Configuration Options
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
