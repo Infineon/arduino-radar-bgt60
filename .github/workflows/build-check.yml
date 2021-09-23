@@ -15,9 +15,7 @@ jobs:
         os: [ ubuntu-latest, windows-latest ]
         example: [examples/directionDetection/directionDetection.ino,
                   examples/interruptMode/interruptMode.ino,
-                  examples/motionDetection/motionDetection.ino,
-                  examples/trackDirState/trackDirState.ino,
-                  examples/trackMotionState/trackMotionState.ino]
+                  examples/motionDetection/motionDetection.ino]
 
     steps:
     - uses: actions/checkout@v2
