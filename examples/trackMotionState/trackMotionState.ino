@@ -18,7 +18,7 @@
  *              --------------------------------------------------
  *
  *              Decoding on-board LED output of BGT60LTR11AIP shield:
- * 
+ *
  *              - Red LED indicates the output of direction of motion once target is detected (PD)
  *              ---------------------------------------------
  *              LED    State    Output explanation
@@ -44,8 +44,6 @@
 /* Include Arduino platform header */
 #include <bgt60-platf-ino.hpp>
 
-#include "timer.h"
-
 using namespace bgt60;
 
 /*
@@ -69,15 +67,18 @@ Bgt60Ino radarShield(TD, PD);
 Bgt60::Motion_t lastMotionEvent = Bgt60::NO_MOTION;
 Bgt60::Motion_t presentMotionEvent = Bgt60::NO_MOTION;
 
+/* Timer variable which contains the current time */
+uint32_t curTime;
+
 void setup()
 {
     /* Set the baud rate for sending messages to the serial monitor */
     Serial.begin(9600);
-    
+
     // Configures the GPIO pins to input mode
     Error_t init_status = radarShield.init();
 
-    // Initialize software timer 
+    // Initialize software timer
     timerInit();
 
     // Start the timer
@@ -108,18 +109,30 @@ void loop()
       if(true==getTdHasChanged())
       {
         readableTime = getTdTimeStamp();
-        
+
         Serial.print("State of motion changed at : ");
         Serial.println(readableTime);
 
         Serial.print("Previous State   :   ");
-        Serial.println(lastMotionEvent);
-        Serial.print("Current State   :   ");
-        Serial.print(presentMotionEvent);
+        if(lastMotionEvent == Bgt60::NO_MOTION){
+          Serial.println("No motion detected");
+        }
+        else{
+          Serial.println("Motion detected");
+        }
 
+        Serial.print("Current State    :   ");
+        if(presentMotionEvent == Bgt60::NO_MOTION){
+          Serial.println("No motion detected");
+        }
+        else{
+          Serial.println("Motion detected");
+        }
+
+        Serial.print("\n");
         lastMotionEvent = presentMotionEvent;
       }
-        
+
     }
     /*  API execution returned error */
     else {
@@ -131,7 +144,7 @@ void loop()
 }
 
 /**
- *  @brief  This function checks if the state of motion has changed since last readout. 
+ *  @brief  This function checks if the state of motion has changed since last readout.
  *          If changed, it sets the flag 'motionStateChanged' to 'true'
  *  @return 'true' or 'false' based on change in state of motion
  */
@@ -154,7 +167,7 @@ bool getTdHasChanged(){
 String getTdTimeStamp() {
   String readableTime;
   uint32_t elapsedTime_ms;
-  
+
   unsigned long currentMillis;
   unsigned long seconds;
   unsigned long minutes;
@@ -163,7 +176,7 @@ String getTdTimeStamp() {
 
   // Get time elapsed since start
   timeElapsed(elapsedTime_ms);
-  
+
   // Convert elapsed time to readable format
   currentMillis = elapsedTime_ms;
   seconds = currentMillis / 1000;
@@ -191,7 +204,32 @@ String getTdTimeStamp() {
   if (seconds < 10) {
     readableTime += "0";
   }
-  readableTime += String(seconds) + " ago";
+  readableTime += String(seconds);
 
   return readableTime;
+}
+
+/**
+ * @brief   Initialiazes the Arduino timer
+ */
+inline  void timerInit()
+{
+    curTime = 0;
+}
+
+/**
+ * @brief   Starts the Arduino timer
+ */
+inline void timerStart()
+{
+    curTime = micros();
+}
+
+/**
+ * @brief       Elapsed time since the timer was started
+ * @param[out]  elapsed Time in milliseconds
+ */
+inline void timeElapsed(uint32_t & elapsed)
+{
+    elapsed = (uint32_t)((micros() - curTime)/1000);
 }

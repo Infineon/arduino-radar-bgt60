@@ -18,7 +18,7 @@
  *              --------------------------------------------------
  *
  *              Decoding on-board LED output of BGT60LTR11AIP shield:
- * 
+ *
  *              - Red LED indicates the output of direction of motion once target is detected (PD)
  *              ---------------------------------------------
  *              LED    State    Output explanation
@@ -44,9 +44,8 @@
 /* Include Arduino platform header */
 #include <bgt60-platf-ino.hpp>
 
-#include "timer.h"
-
 using namespace bgt60;
+
 /*
 * In case no supported platform is defined, the
 * PD and TD pin are set to the values below.
@@ -68,16 +67,19 @@ Bgt60Ino radarShield(TD, PD);
 Bgt60::Direction_t lastDirection = Bgt60::NO_DIR;
 Bgt60::Direction_t presentDirection = Bgt60::NO_DIR;
 
+/* Timer variable which contains the current time */
+uint32_t curTime;
+
 /* Begin setup function - takes care of initialization and executes only once post reset */
 void setup()
 {
     /* Set the baud rate for sending messages to the serial monitor */
     Serial.begin(9600);
-    
+
     // Configures the GPIO pins to input mode
     Error_t init_status = radarShield.init();
-    
-    // Initialize software timer 
+
+    // Initialize software timer
     timerInit();
 
     // Start the timer
@@ -113,15 +115,31 @@ void loop()
             Serial.print("State of Direction changed at : ");
             Serial.println(readableTime);
 
-            Serial.print("Previous Direction   :   ");
-            Serial.println(lastDirection);
-            Serial.print("Current Direction   :   ");
-            Serial.print(presentDirection);
+            Serial.print("Previous direction   :   ");
+            if(lastDirection == Bgt60::NO_DIR){
+              Serial.println("No direction due to no movement");
+            }
+            else if(lastDirection == Bgt60::APPROACHING){
+              Serial.println("Approaching");
+            }
+            else{
+              Serial.println("Departing");
+            }
 
+            Serial.print("Current direction    :   ");
+            if(presentDirection == Bgt60::NO_DIR){
+              Serial.println("No direction due to no movement");
+            }
+            else if(presentDirection == Bgt60::APPROACHING){
+              Serial.println("Approaching");
+            }
+            else{
+              Serial.println("Departing");
+            }
+
+            Serial.print("\n");
             lastDirection = presentDirection;
         }
-        else
-            Serial.println("No change in direction");
     }
     /*  API execution returned error */
     else {
@@ -133,7 +151,7 @@ void loop()
 }
 
 /**
- *  @brief  This function checks if the direction has changed since last readout. 
+ *  @brief  This function checks if the direction has changed since last readout.
  *          If changed, it sets the flag 'dirChanged' to 'true'
  *  @return 'true' or 'false' based on change in state of direction
  */
@@ -156,7 +174,7 @@ bool getPdHasChanged(){
 String getPdTimeStamp() {
   String readableTime;
   uint32_t elapsedTime_ms;
-  
+
   unsigned long currentMillis;
   unsigned long seconds;
   unsigned long minutes;
@@ -193,7 +211,32 @@ String getPdTimeStamp() {
   if (seconds < 10) {
     readableTime += "0";
   }
-  readableTime += String(seconds) + " ago";
+  readableTime += String(seconds);
 
   return readableTime;
+}
+
+/**
+ * @brief   Initialiazes the Arduino timer
+ */
+inline void timerInit()
+{
+    curTime = 0;
+}
+
+/**
+ * @brief   Starts the Arduino timer
+ */
+inline void timerStart()
+{
+    curTime = micros();
+}
+
+/**
+ * @brief       Calculates elapsed time since the timer was started
+ * @param[out]  elapsed Time in milliseconds
+ */
+inline void timeElapsed(uint32_t & elapsed)
+{
+    elapsed = (uint32_t)((micros() - curTime)/1000);
 }
