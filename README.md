@@ -6,9 +6,11 @@ Arduino library of Infineon's **Infineon's 60 GHz Radar shield**, base on the **
 <table>
     <tr>
         <td align="center"><img src="https://github.com/Infineon/radar-bgt60/wiki/img/bgt60-without-background.png" width=200></td>
+        <td align="center"><img src="https://github.com/Infineon/radar-bgt60/wiki/img/radar_S2Go_front_with_background.png" width=200></td>
     </tr>
     <tr>
         <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/Hardware-Platforms#radar-bgt60-pinout">BGT60LTR11AIP Shield for Arduino</a></td>
+       <td style="text-align: center">Shield2Go for BGT60TR11AIP Radar Sensor</a></td> 
     </tr>
 </table>
 
