@@ -20,7 +20,7 @@ namespace bgt60
  * @{
  */
 
-class GPIO
+class bgt60_GPIO
 {
 	public:
 

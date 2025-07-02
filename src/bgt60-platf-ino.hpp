@@ -51,6 +51,11 @@
 #define TD  2
 #define PD  3
 
+#elif defined(CY8CKIT_062S2_AI)            /**< CY8CKIT-062S2-AI */
+
+#define TD  2
+#define PD  3
+
 #else
 #warning "You did not define a supported platform! \
 Please make sure you're using a platform that is officially \

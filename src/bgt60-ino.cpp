@@ -20,7 +20,7 @@ using namespace bgt60;
  */
 Bgt60Ino::Bgt60Ino(uint8_t targetDet, uint8_t phaseDet)
 :
-Bgt60((tDetPin = new GPIOIno(targetDet, INPUT, GPIO::VLogic_t::NEGATIVE)), (pDetPin = new GPIOIno(phaseDet, INPUT, GPIO::VLogic_t::NEGATIVE)))
+Bgt60((tDetPin = new GPIOIno(targetDet, INPUT, bgt60_GPIO::VLogic_t::NEGATIVE)), (pDetPin = new GPIOIno(phaseDet, INPUT, bgt60_GPIO::VLogic_t::NEGATIVE)))
 {
 
 }
