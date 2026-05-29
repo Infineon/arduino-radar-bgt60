@@ -18,7 +18,7 @@
 
 using namespace bgt60;
 
-class GPIOIno: virtual public GPIO
+class GPIOIno: virtual public bgt60_GPIO
 {
 private:
 	#define     UNUSED_PIN    0xFF  /**< Unused pin */

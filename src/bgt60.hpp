@@ -44,7 +44,7 @@ class Bgt60
             DEPARTING       = 2         /**< Target departing */
         };
 
-                    Bgt60(GPIO *tDet, GPIO *pDet);
+                    Bgt60(bgt60_GPIO *tDet, bgt60_GPIO *pDet);
                     ~Bgt60();
         Error_t     init();
         Error_t     deinit();
@@ -55,8 +55,8 @@ class Bgt60
 
     private:
 
-        GPIO       * tDet;
-        GPIO       * pDet;
+        bgt60_GPIO       * tDet;
+        bgt60_GPIO       * pDet;
 };
 
 /** @} */

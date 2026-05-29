@@ -22,7 +22,7 @@ using namespace bgt60;
  * @param[in]       *tDet           Instance of a GPIO to read the target-detect-pin
  * @param[in]       *pDet           Instance of a GPIO to read the phase-detect-pin
  */
-Bgt60::Bgt60(GPIO *tDet, GPIO *pDet) : tDet(tDet), pDet(pDet)
+Bgt60::Bgt60(bgt60_GPIO *tDet, bgt60_GPIO *pDet) : tDet(tDet), pDet(pDet)
 {
 
 }
@@ -119,13 +119,13 @@ Error_t Bgt60::getMotion(Motion_t &motion)
     BGT60_LOG_MSG(__FUNCTION__);
     do
     {
-        GPIO::VLevel_t level = tDet->read();
+        bgt60_GPIO::VLevel_t level = tDet->read();
 
-        if(GPIO::VLevel_t::GPIO_LOW == level)
+        if(bgt60_GPIO::VLevel_t::GPIO_LOW == level)
         {
             motion = MOTION;
         }
-        else if(GPIO::VLevel_t::GPIO_HIGH == level)
+        else if(bgt60_GPIO::VLevel_t::GPIO_HIGH == level)
         {
             motion = NO_MOTION;
         }
@@ -171,13 +171,13 @@ Error_t Bgt60::getDirection(Direction_t &direction)
 
         if(MOTION == motion)
         {
-            GPIO::VLevel_t level = pDet->read();                                  
+            bgt60_GPIO::VLevel_t level = pDet->read();
 
-            if(GPIO::VLevel_t::GPIO_LOW == level)
+            if(bgt60_GPIO::VLevel_t::GPIO_LOW == level)
             {
                 direction = DEPARTING;
             }
-            else if(GPIO::VLevel_t::GPIO_HIGH == level)
+            else if(bgt60_GPIO::VLevel_t::GPIO_HIGH == level)
             {
                 direction = APPROACHING;
             }
@@ -215,11 +215,11 @@ Error_t Bgt60::enableInterrupt(void (*cback) (void))
             break;
         }
         
-        err = tDet->enableInt(cback, GPIO::INT_CHANGE);
+        err = tDet->enableInt(cback, bgt60_GPIO::INT_CHANGE);
         if(OK != err)
             break;
 
-        err = pDet->enableInt(cback, GPIO::INT_CHANGE);  
+        err = pDet->enableInt(cback, bgt60_GPIO::INT_CHANGE);
         if(OK != err)
             break;
         
